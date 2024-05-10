@@ -3,7 +3,7 @@ import Avatar from "../../../../assets/images/avatar.jpg"
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import EmailIcon from '@mui/icons-material/Email';
 import StyledButton from "../../../../components/StyledButton/StyledButton";
-import { AnimatedBackground } from "../../../../components/StyledButton/AnimatedBackground/AnimatedBackground";
+import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground";
 
 const Hero = () => {
 
@@ -11,11 +11,17 @@ const Hero = () => {
     backgroundColor: theme.palette.primary.main,
     height: "100vh",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    [theme.breakpoints.up('xs')]: { // <= mobile
+      paddingTop: "100px"
+    },
+    [theme.breakpoints.up('md')]: { // >= mobile
+      paddingTop: "0"
+    },
   }))
 
   const StyledImg = styled("img")(({theme}) => ({
-    width: "80%",
+    width: "75%",
     borderRadius: "50%",
     border: `1px solid ${theme.palette.primary.contrastText}`
   }))
@@ -41,7 +47,7 @@ const Hero = () => {
               <Grid container display="flex" justifyContent="center" spacing={3} pt={3}>
                 <Grid item xs={12} md={4} display="flex" justifyContent="center">
               
-                <StyledButton>
+                <StyledButton onClick={()=> console.log("download")}>
                   <CloudDownloadIcon />
                   <Typography>
                     Download CV
@@ -49,7 +55,7 @@ const Hero = () => {
                 </StyledButton>
                 </Grid>
                 <Grid item xs={12} md={4} display="flex" justifyContent="center">
-                <StyledButton>
+                <StyledButton onClick={()=> console.log("contact me")}>
                   <EmailIcon />
                   <Typography>
                     Contact Me
